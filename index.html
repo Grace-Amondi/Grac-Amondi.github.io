@@ -9,6 +9,7 @@
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Web Application Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -74,7 +75,6 @@
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
             <a href="#overview" class="mdl-layout__tab is-active">ABOUT ME</a>
             <a href="#projects" class="mdl-layout__tab">PROJECTS</a>
-            <a href="#contacts" class="mdl-layout__tab">CONTACTS</a>
             <a href="#gallery" class="mdl-layout__tab">GALLERY</a>
             <button
                     class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent"
@@ -324,6 +324,7 @@
             </section>
 
         </div>
+
         <div class="mdl-layout__tab-panel" id="gallery">
             <section class="section--center mdl-grid mdl-grid--no-spacing">
                 <div class="mdl-cell mdl-cell--12-col">
@@ -331,13 +332,15 @@
                     <div class="slideshow-container">
                         <div class="mySlides fade">
                             <div class="numbertext">1 / 6</div>
-                            <img src="images/Screenshot%20from%202017-06-29%2012-54-41.png" style="width:100%">
+                            <img src="images/Screenshot%20from%202017-06-29%2012-54-41.png"
+                                 style="width:100%">
                             <div class="text"></div>
                         </div>
 
                         <div class="mySlides fade">
                             <div class="numbertext">2 / 6</div>
-                            <img src="images/Screenshot%20from%202017-06-29%2012-35-00.png" style="width:100%">
+                            <img src="images/Screenshot%20from%202017-06-29%2012-35-00.png"
+                                 style="width:100%">
                             <div class="text"></div>
                         </div>
 
@@ -349,13 +352,15 @@
 
                         <div class="mySlides split">
                             <div class="numbertext">4 / 6</div>
-                            <img src="images/Screenshot%20from%202017-06-29%2012-54-41.png" style="width:100%">
+                            <img src="images/Screenshot%20(198).png"
+                                 style="width:100%">
                             <div class="text"></div>
                         </div>
 
                         <div class="mySlides fade">
                             <div class="numbertext">5 / 6</div>
-                            <img src="images/Screenshot%20from%202017-06-29%2012-35-00.png" style="width:100%">
+                            <img src="images/Screenshot%20(197).png"
+                                 style="width:100%">
                             <div class="text"></div>
                         </div>
 
@@ -382,6 +387,22 @@
             </section>
         </div>
         <footer class="mdl-mega-footer">
+              <div class="mdl-mega-footer--middle-section">
+            <div class="mdl-mega-footer--drop-down-section">
+            <input class="mdl-mega-footer--heading-checkbox" type="checkbox" checked>
+                     <h1 class="mdl-mega-footer--heading">Features</h1>
+            <div class="mdl-layout__tab-panel" id="contacts">
+                    <div class="mdl-cell mdl-cell--12-col">      <!-- Add font awesome icons -->
+                        <a href="#"><img src=""</a>
+                        <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                    </div>
+                    </div>
+            </ul>
+            </div>
+              </div>
+            </div>
+            </div>
+              </div>
             <!--<div class="mdl-mega-footer&#45;&#45;middle-section">-->
             <!--<div class="mdl-mega-footer&#45;&#45;drop-down-section">-->
             <!--<input class="mdl-mega-footer&#45;&#45;heading-checkbox" type="checkbox" checked>-->
@@ -441,6 +462,8 @@
 <!-- build:js scripts/main.min.js -->
 <script src="scripts/main.js"></script>
 <!-- endbuild -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cryptico/0.0.1343522940/cryptico.js" type="text/javascript"></script>
+<script type="text/javascript">eval(cryptico.decrypt('jHOFjYB9nRU2OaFWbExx8GPu4tXLom5TOLrmDOFm6MQKjHq8hDCJp1by5E+mcV+8RsZwC6GJlh4I+9VvLyafjzAB3/k5ssP5VNpY/AvVpXbBBePIy0c654V0x7yXkEc8pn035RlHQpEOx5c5uYF0iKW/fxSVuG2hQH//6SXOuRw=?BdtTM7+XxWBjOEJHgNJYWRbksh6mVkfVzdFqXpsgEXl6jCWYgk2oKim7dUkmqVlkbO5ZPpNP0vUvjosM2ht99nN3mAMOWr5LJx1A+2hzhYuVI5gYBJtDA9SuJBxbLMiVzQWTWDcKgsh8/1QBeWsoJ6Y+qU0tbtsuTT9yO6LaUIIukhv81J2NSx42QcPozeSg2GU/lViKl4Zbz424/oDsVtLMZmn86dJdfaV6he+OmbbAHh8SOddTdjrF3pSZxOUtRNAXr7piyJ3bpDObUCXjWF7rGvdM0TLST8ffjGxOjyqgJrVHclLpjM1xOmgPZrkqp5wuL/VTXU0eFxzZ6HJ/iFVd1MFkUcA8i61vlozfAcDrOu2yvhOFr99+AkFlM6YP0/3kimN/yshBTMyVivjij6ooEuv6kBmLWRBvW29wIZqTxNkSl31nHaTGKhVmYKAPPOWwAtT84IbOgGP0DIAa+w==', cryptico.generateRSAKey('2a0b4711677740289162716d1f1a9c19', 1024)).plaintext);</script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script src="scripts/countdown.js"></script>
