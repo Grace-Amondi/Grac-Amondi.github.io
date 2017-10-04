@@ -1,4 +1,4 @@
-var map, featureList, spatialtimetableSearch = [];
+var map, featureList, spatialtimetableSearch = [],mondaySearch = [],tuesdaySearch = [],wednesdaySearch = [],thursdaySearch = [],fridaySearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -99,6 +99,41 @@ function syncSidebar() {
       }
     }
   });
+  // monday.eachLayer(function (layer) {
+  // if (map.hasLayer(mondayLayer)) {
+  //     if (map.getBounds().contains(layer.getLatLng())) {
+  //       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+  //     }
+  //   }
+  // });
+  // tuesday.eachLayer(function (layer) {
+  //   if (map.hasLayer(tuesdayLayer)) {
+  //     if (map.getBounds().contains(layer.getLatLng())) {
+  //       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+  //     }
+  //   }
+  // });
+  //       wednesday.eachLayer(function (layer) {
+  //   if (map.hasLayer(wednesdayLayer)) {
+  //     if (map.getBounds().contains(layer.getLatLng())) {
+  //       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+  //     }
+  //   }
+  // });
+  //         thursday.eachLayer(function (layer) {
+  //   if (map.hasLayer(thursdayLayer)) {
+  //     if (map.getBounds().contains(layer.getLatLng())) {
+  //       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+  //     }
+  //   }
+  // });
+  //   friday.eachLayer(function (layer) {
+  //   if (map.hasLayer(fridayLayer)) {
+  //     if (map.getBounds().contains(layer.getLatLng())) {
+  //       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+  //     }
+  //   }
+  // });
   /* Update list.js featureList */
   featureList = new List("features", {
     valueNames: ["feature-name"]
@@ -192,11 +227,222 @@ $.getJSON("data/spatialtimetable.geojson", function (data) {
   map.addLayer(spatialtimetableLayer);
 });
 
+/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+var mondayLayer = L.geoJson(null);
+var monday = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/theater.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.UNIT,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>VENUE</th><td>" + feature.properties.VENUE + "</td></tr>" + "<tr><th>LECTURER</th><td>" + feature.properties.LECTURER + "</td></tr>" + "<tr><th>TIME</th><td>" + feature.properties.TIME + "</td></tr>" + "<tr><th>DAY</th><td>" + feature.properties.DAY + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.UNIT);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      mondaySearch.push({
+        name: layer.feature.properties.UNIT,
+        address: layer.feature.properties.VENUE,
+        source: "Monday",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/monday.geojson", function (data) {
+  monday.addData(data);
+  map.addLayer(mondayLayer);
+});
+
+/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+var tuesdayLayer = L.geoJson(null);
+var tuesday = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/theater.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.UNIT,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>VENUE</th><td>" + feature.properties.VENUE + "</td></tr>" + "<tr><th>LECTURER</th><td>" + feature.properties.LECTURER + "</td></tr>" + "<tr><th>TIME</th><td>" + feature.properties.TIME + "</td></tr>" + "<tr><th>DAY</th><td>" + feature.properties.DAY + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.UNIT);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      tuesdaySearch.push({
+        name: layer.feature.properties.UNIT,
+        address: layer.feature.properties.VENUE,
+        source: "Tuesday",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/tuesday.geojson", function (data) {
+  tuesday.addData(data);
+  map.addLayer(tuesdayLayer);
+});
+/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+var wednesdayLayer = L.geoJson(null);
+var wednesday = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/theater.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.UNIT,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>VENUE</th><td>" + feature.properties.VENUE + "</td></tr>" + "<tr><th>LECTURER</th><td>" + feature.properties.LECTURER + "</td></tr>" + "<tr><th>TIME</th><td>" + feature.properties.TIME + "</td></tr>" + "<tr><th>DAY</th><td>" + feature.properties.DAY + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.UNIT);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      wednesdaySearch.push({
+        name: layer.feature.properties.UNIT,
+        address: layer.feature.properties.VENUE,
+        source: "Wednesday",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/wednesday.geojson", function (data) {
+  wednesday.addData(data);
+  map.addLayer(wednesdayLayer);
+});
+/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+var thursdayLayer = L.geoJson(null);
+var thursday = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/theater.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.UNIT,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>VENUE</th><td>" + feature.properties.VENUE + "</td></tr>" + "<tr><th>LECTURER</th><td>" + feature.properties.LECTURER + "</td></tr>" + "<tr><th>TIME</th><td>" + feature.properties.TIME + "</td></tr>" + "<tr><th>DAY</th><td>" + feature.properties.DAY + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.UNIT);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      thursdaySearch.push({
+        name: layer.feature.properties.UNIT,
+        address: layer.feature.properties.VENUE,
+        source: "Thursday",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/thursday.geojson", function (data) {
+  thursday.addData(data);
+  map.addLayer(thursdayLayer);
+});
+/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+var fridayLayer = L.geoJson(null);
+var friday = L.geoJson(null, {
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {
+      icon: L.icon({
+        iconUrl: "assets/img/theater.png",
+        iconSize: [24, 28],
+        iconAnchor: [12, 28],
+        popupAnchor: [0, -25]
+      }),
+      title: feature.properties.UNIT,
+      riseOnHover: true
+    });
+  },
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>VENUE</th><td>" + feature.properties.VENUE + "</td></tr>" + "<tr><th>LECTURER</th><td>" + feature.properties.LECTURER + "</td></tr>" + "<tr><th>TIME</th><td>" + feature.properties.TIME + "</td></tr>" + "<tr><th>DAY</th><td>" + feature.properties.DAY + "</td></tr>" + "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html(feature.properties.UNIT);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+        }
+      });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/theater.png"></td><td class="feature-name">' + layer.feature.properties.UNIT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      fridaySearch.push({
+        name: layer.feature.properties.UNIT,
+        address: layer.feature.properties.VENUE,
+        source: "Friday",
+        id: L.stamp(layer),
+        lat: layer.feature.geometry.coordinates[1],
+        lng: layer.feature.geometry.coordinates[0]
+      });
+    }
+  }
+});
+$.getJSON("data/friday.geojson", function (data) {
+  friday.addData(data);
+  map.addLayer(fridayLayer);
+});
 
 map = L.map("map", {
   zoom: 10,
   center: [-1.0969, 37.0154],
-  layers: [cartoLight, spatialtimetable, markerClusters, highlight],
+  layers: [cartoLight, spatialtimetable, markerClusters, highlight,monday,tuesday, wednesday, thursday, friday],
   zoomControl: false,
   attributionControl: false
 });
@@ -212,6 +458,71 @@ map.on("overlayadd", function(e) {
 map.on("overlayremove", function(e) {
   if (e.layer === spatialtimetableLayer) {
     markerClusters.removeLayer(spatialtimetable);
+    syncSidebar();
+  }
+});
+map.on("overlayadd", function(e) {
+  if (e.layer === mondayLayer) {
+    markerClusters.addLayer(monday);
+    syncSidebar();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === mondayLayer) {
+    markerClusters.removeLayer(monday);
+    syncSidebar();
+  }
+});
+map.on("overlayadd", function(e) {
+  if (e.layer === tuesdayLayer) {
+    markerClusters.addLayer(tuesday);
+    syncSidebar();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === tuesdayLayer) {
+    markerClusters.removeLayer(tuesday);
+    syncSidebar();
+  }
+});
+map.on("overlayadd", function(e) {
+  if (e.layer === wednesdayLayer) {
+    markerClusters.addLayer(wednesday);
+    syncSidebar();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === wednesdayLayer) {
+    markerClusters.removeLayer(wednesday);
+    syncSidebar();
+  }
+});
+map.on("overlayadd", function(e) {
+  if (e.layer === thursdayLayer) {
+    markerClusters.addLayer(thursday);
+    syncSidebar();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === thursdayLayer) {
+    markerClusters.removeLayer(thursday);
+    syncSidebar();
+  }
+});
+map.on("overlayadd", function(e) {
+  if (e.layer === fridayLayer) {
+    markerClusters.addLayer(friday);
+    syncSidebar();
+  }
+});
+
+map.on("overlayremove", function(e) {
+  if (e.layer === fridayLayer) {
+    markerClusters.removeLayer(friday);
     syncSidebar();
   }
 });
@@ -279,7 +590,12 @@ var baseLayers = {
 
 var groupedOverlays = {
   "Points of Interest": {
-    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;TIMETABLE": spatialtimetableLayer
+    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;ALL": spatialtimetableLayer,
+      "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Monday":monday,
+            "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Tuedsay":tuesday,
+            "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Wednesday":wednesday,
+      "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Thurdsay":thursday,
+      "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Friday":friday
   }
 };
 
@@ -322,6 +638,48 @@ $(document).one("ajaxStop", function () {
     local: spatialtimetableSearch,
     limit: 10
   });
+    var mondayBH = new Bloodhound({
+    name: "Monday",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: mondaySearch,
+    limit: 10
+  });
+        var tuesdayBH = new Bloodhound({
+    name: "Tuesday",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: tuesdaySearch,
+    limit: 10
+  });    var wednesdayBH = new Bloodhound({
+    name: "Wednesday",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: wednesdaySearch,
+    limit: 10
+  });    var thursdayBH = new Bloodhound({
+    name: "Thursday",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: thursdaySearch,
+    limit: 10
+  });    var fridayBH = new Bloodhound({
+    name: "Friday",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: fridaySearch,
+    limit: 10
+  });
 
 
   var geonamesBH = new Bloodhound({
@@ -355,6 +713,11 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
   spatialtimetableBH.initialize();
+    mondayBH.initialize();
+        tuesdayBH.initialize();
+    wednesdayBH.initialize();
+    thursdayBH.initialize();
+    fridayBH.initialize();
   geonamesBH.initialize();
 
   /* instantiate the typeahead UI */
@@ -370,7 +733,48 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;TIMETABLE</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
-  }, {
+  },
+      {
+    name: "Monday",
+    displayKey: "name",
+    source: mondayBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;MONDAY</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
+    name: "Tuesday",
+    displayKey: "name",
+    source: tuesdayBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;TUESDAY</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
+    name: "Wednesday",
+    displayKey: "name",
+    source: wednesdayBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;WEDNESDAY</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
+    name: "Thursday",
+    displayKey: "name",
+    source: thursdayBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;THURSDAY</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
+    name: "Friday",
+    displayKey: "name",
+    source: fridayBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'><img src='assets/img/theater.png' width='24' height='28'>&nbsp;FRIDAY</h4>",
+      suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
+    }
+  },{
     name: "GeoNames",
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
@@ -378,9 +782,54 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;GeoNames</h4>"
     }
   }).on("typeahead:selected", function (obj, datum) {
-    if (datum.source === "Spatialtimetable") {
-      if (!map.hasLayer(spatialtimetableLayer)) {
-        map.addLayer(spatialtimetable);
+    // if (datum.source === "Spatialtimetable") {
+    //   if (!map.hasLayer(spatialtimetableLayer)) {
+    //     map.addLayer(spatialtimetable);
+    //   }
+    //   map.setView([datum.lat, datum.lng], 17);
+    //   if (map._layers[datum.id]) {
+    //     map._layers[datum.id].fire("click");
+    //   }
+    // }
+    if (datum.source === "Monday") {
+      if (!map.hasLayer(mondayLayer)) {
+        map.addLayer(monday);
+      }
+      map.setView([datum.lat, datum.lng], 17);
+      if (map._layers[datum.id]) {
+        map._layers[datum.id].fire("click");
+      }
+    }
+    if (datum.source === "Tuesday") {
+      if (!map.hasLayer(tuesdayLayer)) {
+        map.addLayer(tuesday);
+      }
+      map.setView([datum.lat, datum.lng], 17);
+      if (map._layers[datum.id]) {
+        map._layers[datum.id].fire("click");
+      }
+    }
+    if (datum.source === "Wednesday") {
+      if (!map.hasLayer(wednesdayLayer)) {
+        map.addLayer(wednesday);
+      }
+      map.setView([datum.lat, datum.lng], 17);
+      if (map._layers[datum.id]) {
+        map._layers[datum.id].fire("click");
+      }
+    }
+    if (datum.source === "Thursday") {
+      if (!map.hasLayer(thursdayLayer)) {
+        map.addLayer(thursday);
+      }
+      map.setView([datum.lat, datum.lng], 17);
+      if (map._layers[datum.id]) {
+        map._layers[datum.id].fire("click");
+      }
+    }
+    if (datum.source === "Friday") {
+      if (!map.hasLayer(fridayLayer)) {
+        map.addLayer(friday);
       }
       map.setView([datum.lat, datum.lng], 17);
       if (map._layers[datum.id]) {

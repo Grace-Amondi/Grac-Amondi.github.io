@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "VENUE": "SURVEY LAB", "UNIT": "SURVEY II", "TIME": "8.00AM-11AM", "LECTURER": "NGIGI", "DAY": "TUESDAY", "Latitude": -1.096090, "Longitude": 37.013320 }, "geometry": { "type": "Point", "coordinates": [ 37.01332, -1.09609 ] } },
+{ "type": "Feature", "properties": { "VENUE": "SPA 303", "UNIT": "CARTOGRAPHY", "TIME": "1.00PM-4.00PM", "LECTURER": "JULIANA", "DAY": "TUESDAY", "Latitude": -1.093690, "Longitude": 37.014980 }, "geometry": { "type": "Point", "coordinates": [ 37.01498, -1.09369 ] } },
+{ "type": "Feature", "properties": { "VENUE": "PAU", "UNIT": "ECONOMICS", "TIME": "4.00PM-7.00PM", "LECTURER": "FATOKI", "DAY": "TUESDAY", "Latitude": -1.098150, "Longitude": 37.013790 }, "geometry": { "type": "Point", "coordinates": [ 37.01379, -1.09815 ] } }
+]
+}
