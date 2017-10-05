@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b99e791-92e6-4fed-abdd-ad3271dbb8cc" name="Default" comment="" />
+    <list default="true" id="1b99e791-92e6-4fed-abdd-ad3271dbb8cc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spatial timetable/data/thursday.geojson" afterPath="$PROJECT_DIR$/spatial timetable/data/thursday.geojson" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/spatial timetable/data/thursday.geojson">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="7" column="205" lean-forward="false" selection-start-line="7" selection-start-column="205" selection-end-line="7" selection-end-column="205" />
+              <caret line="7" column="138" lean-forward="false" selection-start-line="7" selection-start-column="138" selection-end-line="7" selection-end-column="138" />
               <folding />
             </state>
           </provider>
@@ -885,7 +887,7 @@
     <entry file="file://$PROJECT_DIR$/spatial timetable/data/thursday.geojson">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="7" column="205" lean-forward="false" selection-start-line="7" selection-start-column="205" selection-end-line="7" selection-end-column="205" />
+          <caret line="7" column="138" lean-forward="false" selection-start-line="7" selection-start-column="138" selection-end-line="7" selection-end-column="138" />
           <folding />
         </state>
       </provider>
