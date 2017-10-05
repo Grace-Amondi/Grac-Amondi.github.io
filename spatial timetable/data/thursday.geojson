@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "VENUE": "ELB 112", "UNIT": "CARTOGRAPHY", "TIME": "7.00AM-10.00AM", "LECTURER": "JULIANA", "DAY": "THURSDAY", "Latitude": -1.096350, "Longitude": 37.014090 }, "geometry": { "type": "Point", "coordinates": [ 37.01409, -1.09635 ] } },
+{ "type": "Feature", "properties": { "VENUE": "ELB 112", "UNIT": "INTRODUCTION TO GIS II", "TIME": "10.00AM-1.00PM", "LECTURER": "KIPKULEI", "DAY": "THURSDAY", "Latitude": -1.096350, "Longitude": 37.014090 }, "geometry": { "type": "Point", "coordinates": [ 37.01409, -1.09635 ] } }
+]
+}

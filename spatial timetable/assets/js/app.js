@@ -440,7 +440,7 @@ $.getJSON("data/friday.geojson", function (data) {
 });
 
 map = L.map("map", {
-  zoom: 10,
+  zoom: 20,
   center: [-1.0969, 37.0154],
   layers: [cartoLight, spatialtimetable, markerClusters, highlight,monday,tuesday, wednesday, thursday, friday],
   zoomControl: false,
