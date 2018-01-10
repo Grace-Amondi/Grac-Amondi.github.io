@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+        <style>
+            code{
+                color:yellowgreen;
+                background-color: black;
+            }
+            pre{
+                width:100%;
+                align-self: center;
+            }
+        </style>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Grace</strong> SPATIAL DEV</a>
+									<ul class="icons">
+										<li><a href="https://twitter.com/grace_miswa?lang=en" target="_blank" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.facebook.com/grace.miswa" target="_blank" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+										<li><a href="https://github.com/Grace-Amondi" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+										<li><a href="https://www.instagram.com/gracemiswa/" target="_blank" class="icon fa-instagram"><span target="_blank" class="label">Instagram</span></a></li>
+										<li><a href="https://www.linkedin.com/in/grace-amondi-20a979145/" target="_blank" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>RESTFUL API WITH NODE JS LIKE A PRO</h1>
+									</header>
+
+									<span class="image main"><img src="https://workingmouse.com.au/site/img//API-Article_(website).png" alt="" /></span>
+                                    <h2 style="color:darkgreen">TERMINOLOGIES</h2>
+                                    <h3 style="color:blue;text-decoration:underline">RESTFul API</h3>
+									<p>A RESTful API is an application program interface (API) that uses HTTP requests to GET, PUT, POST ,PATCH and DELETE data.(CRUD)<br>They use GET to retrieve a resource; PUT to change the state of or update a resource, which can be an object, file or block; POST to create that resource; and DELETE to remove it.</p>
+
+									<h2 style="text-align:center">LET'S CODE.</h2>
+									<p>Before we get into the nitty gritty of coding let's first understand the tools we will use.</p>
+									<dl style="color:darkgreen">
+                                        <dt>Hapi</dt>
+                                        <dt>Loadash.take</dt>
+                                        <dt>Handlebars</dt>
+                                        <dt>Loadash.filter</dt>
+                                        <dt>Request</dt>
+                                        <dt>Vision</dt>
+                                    </dl>
+
+									<hr class="major" />
+                                    <p>First step will be to make a directory called <em>event</em> and inside create a <em>package.json</em> file as shown below.</p>
+                                    <pre><code>mkdir event </code></pre>
+                                    <pre><code>cd event </code></pre>
+                                    <pre><code>touch package.json</code></pre>
+
+                                    <p>Now to install the above dependancies run add the following to <em>package.json</em></p>
+                                    <pre><code style="color:yellowgreen;background-color:black">
+// package.json
+
+{
+"name": "event",
+"description": "An app that displays event categories by pulling data from EventBrite api endpoints",
+"main": "server.js",
+"dependencies": {
+    "handlebars": "^4.0.6",
+    "hapi": "^16.0.2",
+    "lodash.filter": "^4.6.0",
+    "lodash.take": "^4.1.1",
+    "request": "^2.79.0",
+    "vision": "^4.1.1"
+    }
+}
+                                    </code></pre>
+
+                                    <p>Then run:</p>
+                                    <pre><code>npm install</code></pre>
+
+                                    <p>So far so good.</p>
+
+									<hr class="major" />
+
+                                    <p>Now we are required to create a <em>server.js</em> file inside our <em>event</em> directory by running:</p>
+                                    <pre><code>touch server.js</code></pre>
+                                    <img src="http://www.oseconsulting.com/wp-content/uploads/2016/02/Why-blue-2.png" style="width:100%;height:100%">
+                                    <p>This will be our main entry file. We will need to require all of the dependancies we install.
+                                        These can be found in package.json file. Steal the code below:
+                                    </p>
+                                    <pre><code>
+// server.js
+
+'use strict'
+    
+const Hapi = require('hapi');
+const Request = require('request');
+const Vision = require('vision');
+const Handlebars = require('handlebars');
+const LodashFilter = require('lodash.filter');
+const LodashTake = require('lodash.take');
+    
+const server = new Hapi.Server();
+    
+server.connection({
+    host: '127.0.0.1',
+    port: 3000
+});
+    
+// Register vision for our views
+server.register(Vision, (err) => {
+    server.views({
+        engines: {
+            html: Handlebars
+        },
+        relativeTo: __dirname,
+        path: './views',
+    });
+});
+    
+server.start((err) => {
+    if (err) {
+        throw err;
+    }
+    
+    console.log(`Server running at: ${server.info.uri}`);
+});
+                                    </code></pre>
+
+                                    <p>Let us go through the above code. <br>
+                                    We first require hapi.js server to allocate a port(3000) and host(localhost)</p>
+                                    <p>We then register vision with hapi.js and configure it to use Handlebars as the template engine.<br> We then start the server. As easy as that.</p>
+                                    <p>We need a our token for Event Brite api. Visit <a href="https://www.eventbrite.com/developer/v3/">EventBrite</a></p>
+                                    <p>Now let's create our first route which will be the home route.This will simply display the Event Categories.Add the following to server.js file.</p>
+                                    <pre><code>
+// Show event categories
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        Request.get('https://www.eventbriteapi.com/v3/categories/?token={personal_token}', 
+        function (error, response, body) {
+            if (error) {
+                throw error;
+            }
+ 
+            const data = JSON.parse(body);
+            reply.view('index', { result: data });
+        });
+    }
+});
+    
+// A simple helper function that extracts categories ID from team URL
+Handlebars.registerHelper('categoriesID', function (categoriesUrl) {
+    return categoriesUrl.slice();
+});
+                                    </code></pre>
+
+                                    <p>Now create a views directory and <em>index.html</em>
+                                         file inside views and add the following code.</p>
+
+                                    <img src="https://img00.deviantart.net/54a4/i/2015/194/2/a/i_hope_all_of_you_will_understand_now____by_megamario5599-d9170dq.jpg" style="width:100%;height:100%">
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="blog.html">Blog</a></li>
+										<li><a href="elements.html">Elements</a></li>
+										<li>
+											<span class="opener">Submenu</span>
+											<ul>
+												<li><a href="#">Lorem Dolor</a></li>
+												<li><a href="#">Ipsum Adipiscing</a></li>
+												<li><a href="#">Tempus Magna</a></li>
+												<li><a href="#">Feugiat Veroeros</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Recent Posts</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="https://github.com/Grace-Amondi/Grace-Amondi.github.io/blob/master/images/Screenshot%20from%202017-06-29%2012-54-41.png?raw=true" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="https://github.com/Grace-Amondi/Grace-Amondi.github.io/blob/master/images/Screenshot%20(199).png?raw=true" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="https://github.com/Grace-Amondi/Grace-Amondi.github.io/blob/master/images/Screenshot%20(198).png?raw=trueg" alt="" /></a>
+											<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="#" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>You can get me to make you anything or just say hello to me below.</p>
+									<ul class="contact">
+										<li class="fa-envelope-o"><a href="#">gmiswa990@gmail.com</a></li>
+										<li class="fa-phone">+254-705-624-637</li>
+										<li class="fa-home">P.O BOX 16583<br />
+										Nairobi,Kenya -00560</li>
+									</ul>
+								</section>
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
