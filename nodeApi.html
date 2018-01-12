@@ -11,11 +11,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="prism.css" rel="stylesheet" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
-        <style>
+        <!-- <style>
             code{
                 color:yellowgreen;
                 background-color: black;
@@ -24,7 +25,7 @@
                 width:100%;
                 align-self: center;
             }
-        </style>
+        </style> -->
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -69,12 +70,12 @@
 
 									<hr class="major" />
                                     <p>First step will be to make a directory called <em>event</em> and inside create a <em>package.json</em> file as shown below.</p>
-                                    <pre><code>mkdir event </code></pre>
-                                    <pre><code>cd event </code></pre>
-                                    <pre><code>touch package.json</code></pre>
+                                    <pre class="language-clike"><code>mkdir event </code></pre>
+                                    <pre class="language-clike"><code>cd event </code></pre>
+                                    <pre class="language-clike"><code>touch package.json</code></pre>
 
                                     <p>Now to install the above dependancies run add the following to <em>package.json</em></p>
-                                    <pre><code style="color:yellowgreen;background-color:black">
+                                    <pre class="language-json"><code style="color:yellowgreen;background-color:black">
 // package.json
 
 {
@@ -93,19 +94,19 @@
                                     </code></pre>
 
                                     <p>Then run:</p>
-                                    <pre><code>npm install</code></pre>
+                                    <pre class="language-clike"><code>npm install</code></pre>
 
                                     <p>So far so good.</p>
 
 									<hr class="major" />
 
                                     <p>Now we are required to create a <em>server.js</em> file inside our <em>event</em> directory by running:</p>
-                                    <pre><code>touch server.js</code></pre>
-                                    <img src="http://www.oseconsulting.com/wp-content/uploads/2016/02/Why-blue-2.png" style="width:100%;height:100%">
+                                    <pre class="language-clike"><code>touch server.js</code></pre>
+                                    <!-- <img src="http://www.oseconsulting.com/wp-content/uploads/2016/02/Why-blue-2.png" style="width:100%;height:100%"> -->
                                     <p>This will be our main entry file. We will need to require all of the dependancies we install.
                                         These can be found in package.json file. Steal the code below:
                                     </p>
-                                    <pre><code>
+                                    <pre class="language-js"><code>
 // server.js
 
 'use strict'
@@ -149,7 +150,7 @@ server.start((err) => {
                                     <p>We then register vision with hapi.js and configure it to use Handlebars as the template engine.<br> We then start the server. As easy as that.</p>
                                     <p>We need a our token for Event Brite api. Visit <a href="https://www.eventbrite.com/developer/v3/">EventBrite</a></p>
                                     <p>Now let's create our first route which will be the home route.This will simply display the Event Categories.Add the following to server.js file.</p>
-                                    <pre><code>
+                                    <pre class="language-js"><code>
 // Show event categories
 server.route({
     method: 'GET',
@@ -175,8 +176,149 @@ Handlebars.registerHelper('categoriesID', function (categoriesUrl) {
 
                                     <p>Now create a views directory and <em>index.html</em>
                                          file inside views and add the following code.</p>
+										<pre class="language-markup"><code>
+&lt;!doctype html&gt;
+	&lt;html&gt;
+		&lt;head&gt;
+			&lt;meta charset="utf-8"&gt;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+			&lt;meta name="viewport" 
+			content="width=device-width, 
+			initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+			
+			&lt;title&gt;Events&lt;/title&gt;
+			
+			&lt;link rel="stylesheet" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css"&gt;
+		&lt;/head&gt;
+	&lt;body&gt;
+		
+	&lt;div class="container"&gt;
+		&lt;div class="section columns"&gt;
+			&lt;div class="column is-8 is-offset-2"&gt;
+				&lt;h2 class="title has-text-centered"&gt;
+					Events Categories                  	
+				&lt;/h2&gt;
+		
+			&lt;table class="table is-bordered is-striped is-narrow"&gt;
+				&lt;thead&gt;
+						&lt;tr&gt;
+						&lt;th width="10px">#&lt;/th&gt;
+						&lt;th&gt;Name&lt;/th&gt;
+						&lt;th&gt;Short name&lt;/th&gt;
+					&lt;/tr&gt;
+				&lt;/thead&gt;
+				&lt;tbody&gt;
+					{{#each result.categories}}
+					&lt;tr&gt;
+						&lt;td>{{ id }}&lt;/td&gt;
+						&lt;td&gt;
+								&lt;a href="categories/{{categoriesID id}}"&gt;
+								{{ name }}
+								&lt;/a&gt;
+							&lt;/td&gt;
+						&lt;td&gt;
+							{{ short_name }}
+							&lt;/td&gt;
+					&lt;/tr&gt;
+							{{/each}}
+				&lt;/tbody&gt;
+			&lt;/table&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;
+										</code></pre>
 
-                                    <img src="https://img00.deviantart.net/54a4/i/2015/194/2/a/i_hope_all_of_you_will_understand_now____by_megamario5599-d9170dq.jpg" style="width:100%;height:100%">
+										<p>With that in place let us test what we have done so far</p>
+										<pre class="language-clike"><code>node server</code></pre>
+										<p>You should have the following output</p>
+										<img src="images/api.png" style="width:100%;height:100%">
+
+										<p>We now need to add the subcategories page which will contain the subcategories of each category.</p>
+										<p>Add the following code to <em>server.js </em> file.</p>
+										<pre class="language-js"><code>
+server.route({
+	method: 'GET',
+	path: '/categories/{id}',
+	handler: function (request, reply) {
+		const categoriesID = encodeURIComponent(request.params.id);
+	
+		Request.get(`https://www.eventbriteapi.com/v3/categories/${categoriesID}/?token=personal_token`, 
+		function (error, response, body) {
+			if (error) {
+				throw error;
+			}
+	
+			const result = JSON.parse(body);
+				reply.view('categories', { result: result});
+			
+		});
+	}
+});
+										</code></pre>
+										<p>We need to get the subcategories by using the ID of each category so that on clicking </p>
+										<p>Let us now create the <em>categories.html</em> inside our views directory and the following code.</p>
+										<pre class="language-markup"><code>
+	&lt;!doctype html&gt;
+	&lt;html&gt;
+		&lt;head&gt;
+			&lt;meta charset="utf-8"&gt;
+			&lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+			&lt;meta name="viewport" 
+			content="width=device-width, 
+			initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+			
+			&lt;title&gt;Events&lt;/title&gt;
+			
+			&lt;link rel="stylesheet" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css"&gt;
+		&lt;/head&gt;
+	&lt;body&gt;
+		
+	&lt;div class="container"&gt;
+		&lt;div class="section columns"&gt;
+			&lt;div class="column is-8 is-offset-2"&gt;
+				&lt;h2 class="title has-text-centered"&gt;
+					{{ result.name }}
+				&lt;/h2&gt;
+		
+				&lt;div class="box"&gt;
+					&lt;article class="media"&gt;
+						&lt;div class="media-content"&gt;
+							&lt;div class="content"&gt;
+								&lt;aside class="menu"&gt;
+									&lt;p class="menu-label">Basic Information&lt;/p&gt;
+								
+									&lt;ul class="menu-list"&gt;
+										{{#each result.subcategories}}
+										&lt;li&gt;
+										&lt;strong&gt;Name:</strong> {{ name }}
+										&lt;/li&gt;
+											{{/each}}
+										&lt;/ul&gt;
+								&lt;/aside&gt;
+							&lt;/div&gt;
+						&lt;/div&gt;
+						&lt;div class="media-right"&gt;
+								&lt;a href="/" class="button">Home&lt;/a&gt;
+						&lt;/div&gt;
+					&lt;/article&gt;
+				&lt;/div&gt;
+	 
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;
+										</code></pre>
+										<p>Now run <pre class="language-clike"><code>node server</code></pre> again.</p>
+										<p>You should have the following output.</p>
+										<img src="images/api1.png" style="width:100%;height:100%">
+										<p>Boom!! That's it. And that is how you use RESTful API with node js like a pro.</p>
 								</section>
 
 						</div>
@@ -265,6 +407,7 @@ Handlebars.registerHelper('categoriesID', function (categoriesUrl) {
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<script src="prism.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
