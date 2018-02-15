@@ -30,6 +30,40 @@
 					img{
 						width:100%;
 					}
+						.image {
+						  opacity: 1;
+						  display: block;
+						  width: 100%;
+						  height: auto;
+						  transition: .5s ease;
+						  backface-visibility: hidden;
+						}
+
+						.middle {
+						  transition: .5s ease;
+						  opacity: 0;
+						  position: absolute;
+						  top: 50%;
+						  left: 50%;
+						  transform: translate(-50%, -50%);
+						  -ms-transform: translate(-50%, -50%);
+						  text-align: center;
+						}
+
+						.container:hover .image {
+						  opacity: 0.3;
+						}
+
+						.container:hover .middle {
+						  opacity: 1;
+						}
+
+						.text {
+						  background-color: #4CAF50;
+						  color: white;
+						  font-size: 16px;
+						  padding: 16px 32px;
+						}
 				</style>
 
 		<!-- Wrapper -->
@@ -60,20 +94,21 @@
 									<span class="image main"><img src="images/grace.jpg" alt="" /></span>
 									<div class="row">
 											<div class="6u 12u$(small)">
-												<img src="images/grace.jpg" alt="" />
+												<img src="https://scontent.fmba1-1.fna.fbcdn.net/v/t1.0-9/23915758_521400021576355_7736463748413960917_n.jpg?oh=d00667eb9c066eec2aa621b5e3204618&oe=5B0FDB1D" alt="" class="image" />
+												<div class="middle">
+    												<div class="text">John Doe</div>
+  												</div>
 											</div>
 											<div class="6u$ 12u$(small)">
-												<img src="images/grace.jpg" alt="" />
+												<img src="https://lh3.googleusercontent.com/jx9YwQ2Cw-DjnqNgYcVZNGGR0krilcaZ1NtNEe0ny62GYXnr6tkA1c_pDghgU7UhSClnHQhpWlFbYMpsb018hwl8UHUNzCYmfwv4-rWsaX71pa30IO8tpDcBBfsTfcJisa9LnaZJM4AD93K4IqV9yO8FyOXB8Ly0rFaMh9VlUOPxsqa39h4EJ1UJ_xWPPgPs4yIqtQDkmpFUPi-pyE7LhKx0pbm-3-40KKGL0iZUU-0gIynyeQOS9Tv4KQYuIAwmhLH919JOc2knhC1Mfuq7U1M1yfc0otZCMEQj6uivX2HwTjtcMLq7kz0wlwHX7m2lzwxPXJ-UflspByeDbgxDRrkYsuVXLw56VctI046Vkzj8C7znh-53x5PEiNEod95ovLCAgKKpFkpHPEEZ3g4gBwtHyloahsXotllkuigM-WOY4F3vareIEiajh2wHyY4JtWCJduKZfO3-IwK8izOtUZjypMyqzE07moOHo9XaIgeQ8bCHJmSnmHcdLg3sh3qNaBeST7siBETpNba8XXdLTjOVzDC_o_6DbZvTrDhc-dJlqugRdLdvRXdXsUzZaqYHrTsF1m5Od9CDitJ-aOG1ejB_AB-y-XADDRKtQPs=w520-h675-no" alt="" />
 											</div>
 											<!-- Break -->
-											<div class="4u 12u$(medium)">
-												<img src="images/grace.jpg" alt="" />
+											<div class="8u 12u$(medium)">
+												<img src="images/gracelarge.jpg" alt="" />
 											</div>
-											<div class="4u 12u$(medium)">
-												<img src="images/grace.jpg" alt="" />
-											</div>
+										
 											<div class="4u$ 12u$(medium)">
-												<img src="images/grace.jpg" alt="" />
+												<img src="https://lh3.googleusercontent.com/r_90NUxi-HXVbbR3nOCATFRPrNcZG1FORVTkp8eeoZfQtu4IHqvm02NFe2XPIQddRbwCz42Kjf5meNcmeFXhrxB5jwcq2J3Sa6-NIC1JsJm-DHT6DAcnUqNfssgBNMMNvyWPb0YAegLDuVRjvlckycvBlWNDVkftAIukO_DhTP_p13JIGvov-kOzY08tkcx0ZwmtK3O64FCR8wTGjdRglbx_Chuzg8s6PZiW_WkD38yOauspnMJfr4bBjHFgeQWRHdPtffgvCu7CydpQnOAjsTpsR0FdYAmL3tFZlImRdg5I1DYKgpUo95kXx6og3RZqgb1ei_niJqlqAAQDbbIELeASkiHj89KW2l5Ar6jKXgk4taDpRdlUdnwVq-zMg4wD_VzcDdcCL53ckMXvH0jFbwqeJkMg4n2E6GnLs0HDGWnWCjSfywFrsWum_rkhBTrrjK1p4MUlOTZuosdtYKLiLRk3NAM0sPp4EhxLKF9jbUh3crElSaQMKm6BAgQqGPI2EfRGiCEC4vZ4W2x2pX-WnqGG3DAu3VgdOyvri_V-w7UNqqlydp2NPUrIu2PREaj9-1Bu-Nf6_QfMKfOc1MDE2NkCjJ_K35RCweFIiWc=w380-h675-no" alt="" />
 											</div>
 										</section>
 
