@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Blog</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="author" content="Grace Amondi">
+    <meta property="og:image" content="https://www.tekkiwebsolutions.com/wp-content/uploads/2017/03/express-benefits.png">
+    <meta property="og:description" content="Building an express application.">
+    <meta property="og:title" content="EXPRESS APPLICATION">
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link href="prism.css" rel="stylesheet" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+
+<body>
+
+    <style>
+        #wrapper {
+            background: #EFEFBB;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #D4D3DD, #EFEFBB);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #D4D3DD, #EFEFBB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            
+        }
+
+        p {
+            font-size: 18px;
+            color: black;
+        }
+    </style>
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="index.html" class="logo">
+                        <strong>Grace</strong> SPATIAL DEV</a>
+                    <ul class="icons">
+                        <li>
+                            <a href="https://twitter.com/grace_miswa?lang=en" target="_blank" class="icon fa-twitter">
+                                <span class="label">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/grace.miswa" target="_blank" target="_blank" class="icon fa-facebook">
+                                <span class="label">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/Grace-Amondi" target="_blank" class="icon fa-github">
+                                <span class="label">Github</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/gracemiswa/" target="_blank" class="icon fa-instagram">
+                                <span target="_blank" class="label">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/grace-amondi-20a979145/" target="_blank" class="icon fa-linkedin">
+                                <span class="label">Linkedin</span>
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <header class="main">
+                        <h1 style="text-align: center;">EXPRESS IN A NUTSHELL!</h1>
+                    </header>
+
+                    <span class="image main">
+                        <img src="https://www.tekkiwebsolutions.com/wp-content/uploads/2017/03/express-benefits.png"
+                            alt="" />
+                    </span>
+                    <h2><em>Introduction</em></h2>
+                    <p><a href="full_stack.html"> Express</a> is simply a web application framework for Node Js.</p>
+                    <p>In every Node js application there is always a package.json file which contains the project's metadata including packages that depend on it to run.Below is an example of package.json file.</p>
+
+                    <pre class="language-js"><code>
+{
+    "name": "application-name",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "dependencies": {
+        "express": "~4.9.0",
+        "body-parser": "~1.8.1",
+        "cookie-parser": "~1.3.3",
+        "morgan": "~1.3.0",
+        "serve-favicon": "~2.1.3",
+        "debug": "~2.0.0",
+        "jade": "~1.6.0"
+    }
+}</code></pre>
+                    <hr class="major" />
+
+                    <h2><em><b>The Ingredients</b></em></h2>
+                    <p>To create an Express project you will need at least the following key ingredients:</p>
+
+                    <ol style="font-size: 18px;color: navy">
+                        <li>Node and npm</li>
+                        <li>Express generator</li>
+                        <li>Git</li>
+                        <li>Terminal/Command-line interface</li>
+                        <li>Heroku</li>
+                    </ol>
+
+                    <hr class="major" />
+
+                    <h2><b>Let's Cook!!</b></h2>
+                    <p>To install Node and npm visit <a href="https://nodejs.org/en/" target="_blank">Node js Official Website</a>
+                    </p>
+                    
+                    <p>Next install express globally by running the command below:</p>
+                    <pre class="language-js"><code>npm install -g express-generator</code></pre>
+                    <p>To check the express version simply execute : </p>
+                    <pre class="language-js"><code>express --version</code></pre>
+                    <p>If all is well then go ahead and create a folder and name it <em>hello_express</em> through your terminal</p>
+                    <pre class="language-js"><code>mkdir hello_express</code></pre>
+                    <p>Then navigate to your folder</p>
+                    <pre class="language-js"><code>cd hello_express</code></pre>
+                    <p>Now run the command below to create an express project</p>
+                    <pre class="language-js"><code>express</code></pre>
+                    <p>This will create a bunch of folders and files inside the hello_express directory.Next you will need to install dependancies.This is simply done by running:</p>
+                    <pre class="language-js"><code>npm install</code></pre>
+                    <hr class="major" />
+
+                    <p>Let's give our application a test drive to see how far we've come with a few lines of code.Simply run:</p>
+                    <pre class="language-js"><code>npm start</code></pre>
+                    <p>Head on over to localhost:3000 and voila!</p>
+                    <span class="image main">
+                        <img src="images/express.png"
+                            alt="" />
+                    </span>
+                    <hr class="major" />
+
+                    <h2><em>Nodemon</em></h2>
+                    <p>A Node application compiles before running, so if you make changes to the application code while it’s running, they won’t be picked up until the Node process is stopped and restarted.This is where Nodemon comes in. It automatically restarts the application in case of any changes. To install nodemon globally stop the Node process by pressing CTRL + C then run:</p>
+                    <pre class="language-js"><code> sudo npm install -g nodemon</code></pre>
+                    <p>Now restart the application by running
+                    </p>
+                    <pre class="language-js"><code>nodemon</code></pre>
+                    <p><b>Mongoose</b> adds an entire layer of features on top of Mongo DB that are useful when building web applications. Mongoose makes it easier to manage the connections to your Mongo DB database, as well as to save data and read data.</p>
+
+                    <hr class="major"/>
+
+                    <h2><em>Modifying Express for MVC</em></h2>
+                    <span class="image main">
+                        <img src="https://shohaglive.com/uploads/images/blog_images/091020171753517833.png"
+                            alt="" />
+                    </span>
+                    <p>MVC stands for Model-View-Controller and it aims at seperating our structure into data(model), the display(view) and the application logic(controller). We are simply making code mre maintainable and reusable.A request comes into the application.
+The request gets routed to a controller.
+The controller, if necessary, makes a request to the model.
+The model responds to the controller.
+The controller sends a response to a view.
+The view sends a response to the original requester.</p>
+
+                    <h2>Rearrange Things</h2>
+                    <p>To keep everything tidy create a folder called <em>app_server</em> and inside it create two folders namely models and controllers. Move the views and routes folders into the <em>app_server</em> folder. If you try to run the application right now it won't work.We need to tell express that we have added new folders and moved routes and views. Head on over to <em>app.js</em> file and change <pre><code style="color: navy">app.set('views', path.join(__dirname, 'views'));</code></pre> to <pre><code style="color: green">app.set('views', path.join(__dirname, 'app_server', 'views'));</code></pre></p>
+                    <p>Let's also tell express that we have moved the routes.In <em>app.js</em> change </p><pre><code style="color: navy">var routes = require('./routes/index');
+var users = require('./routes/users');</code></pre> to <pre><code style="color: green">var routes = require('./app_server/routes/index');
+var users = require('./app_server/routes/users');</code></pre>
+                    
+                    <h2><em>Taking the controller code out of the route.</em></h2>
+                    <p>Head on over to app_server/route/index.js file and edit it:
+                    <pre class="language-js"><code>
+var homepageController = function (req, res) {
+    res.render('index', { title: 'Express' });
+};
+/* GET home page. */
+router.get('/', homepageController);</code></pre></p>
+                    <h2>Setting up the Homepage Controller</h2>
+                    <p>For this we will need to create a main.js file inside app_server/controllers folder with the following code.
+                    <pre class="language-js"><code>
+/* GET home page */
+module.exports.index = function(req, res){
+res.render('index', { title: 'Express' });
+};
+                    </code></pre></p>
+                    <p>This is how the index.js file in app_server/routes folder should finally look like.<pre class="language-js"><code>
+var express = require('express');
+var router = express.Router();
+var ctrlMain = require('../controllers/main');
+/* GET home page. */
+router.get('/', ctrlMain.index);
+module.exports = router;
+                    </code></pre></p>
+
+                    <p>Let's go the extra mile and add some Bootsrap to our app. We notice at this point that our views are in .jade format rather than the normal HTML we are all used to. No need to worry.</p>
+                    <p>In our index.jade file add the following link at the top
+
+                    <pre class="language-markup"><code>
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+link(rel='stylesheet', href='https://bootswatch.com/2/superhero/bootstrap.min.css')'
+                    </code></pre></p>
+                    <p>Add jQuery and boostrap.js links at the bottom like this <pre class="language-markup"><code>
+script(src='http://code.jquery.com/jquery-1.12.4.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js')
+                    </code></pre></p>
+                    <p>Finally delete the contents of the style.css file to prevent them from overriding the Bootstrap.Verify that your application is running once again.</p>
+                    <hr class="major"/>
+
+                    <h2><em>Making it live on Heroku</em></h2>
+                    <p>There are a few platform as a service providers such as
+Google Cloud Platform, Nodejitsu, OpenShift, and Heroku.We are going to use Heroku here, but nothing stops you from being adventorous and exploring the other service providers.So lets get started.</p>
+<p>Update package.json and add the node and npm versions so that your final package.json file looks like this</p>
+                    <pre class="language-js"><code>
+{
+    "name": "hello_express",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www"
+    },
+    "engines": {
+        "node": "~4.2.1",
+        "npm": "~2.2.0"
+    },
+    "dependencies": {
+        "express": "~4.9.0",
+        "body-parser": "~1.8.1",
+        "cookie-parser": "~1.3.3",
+        "morgan": "~1.3.0",
+        "serve-favicon": "~2.1.3",
+        "debug": "~2.0.0",
+        "jade": "~1.6.0"
+    }
+}</code> </pre>
+                    <p>Ofcourse you will have to put your own versions in place of mine.</p><p>Next create a Procfile at the root of your project. It's sole purpose is to declare the process and commands used to run the application. Add the following line to your Procfile<pre class="language-js"><code>web: npm start</code></pre></p>
+                    <p>We are going to push the site to heroku using git. This means that we need to initialize our project as a git repository. Just execute:<pre class="language-js"><code>git init</code></pre></p>
+                    <p>Next add everything in the folder to the repository by running this:<pre class="language-js"><code>git add .</code></pre></p>
+                    <p>Finally commit changes to the repository<pre class="language-js"><code>git commit -m "First commit"</code></pre></p>
+
+                    <p>The next step would be to create a heroku application. THis would ofcourse mean that you would need to have a heroku account first. Visit <a href="https://www.heroku.com/">Heroku's Official Site</a> and create and account.</p>
+
+                    <p>Once you are done move swiflty back to the terminal and run <pre class="language-js"><code>heroku login</code></pre></p>
+                    <p>You will be prompted for your heroku credentials. Next create an a heroku application by running the code below on your terminal<pre class="language-js"><code>heroku create</code></pre></p>
+                    <p>Deploy the application to heroku by running:<pre class="language-js"><code>git push heroku master</code></pre></p>
+                    <p>If successful then your app will be deployed at the provided url. If you log in to heroku's site you will notice that the app has been added.Before you can view the application online you need
+to add a single web dyno. This is easily done with a simple terminal command:<pre class="language-js"><code>heroku ps:scale web=1</code></pre></p>
+
+                    <h2><em>View application live</em></h2>
+                    <pre class="language-js"><code>heroku open</code></pre>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Search -->
+                <section id="search" class="alt">
+                    <form method="post" action="#">
+                        <input type="text" name="query" id="query" placeholder="Search" />
+                    </form>
+                </section>
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li>
+                            <a href="index.html">Homepage</a>
+                        </li>
+                        <li>
+                            <a href="blog.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="elements.html">Elements</a>
+                        </li>
+                        <li>
+                            <span class="opener">Submenu</span>
+                            <ul>
+                                <li>
+                                    <a href="#">Lorem Dolor</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ipsum Adipiscing</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tempus Magna</a>
+                                </li>
+                                <li>
+                                    <a href="#">Feugiat Veroeros</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>Recent Posts</h2>
+                    </header>
+                    <div class="mini-posts">
+                            <article>
+                                    <a href="nodeApi.html" class="image">
+                                        <img src="https://workingmouse.com.au/site/img//API-Article_(website).png" alt="" />
+                                    </a>
+                                    <p>RESTFUL API WITH NODE JS LIKE A PRO</p>
+                                </article>
+                                <article>
+                                        <a href="experience.html" class="image">
+                                                <img src="http://www.psafe.com/en/blog/wp-content/uploads/2016/10/BLOG_EN_0510_Most-Useful-Coding-and-Programming-Languages-to-Know.jpg" alt="" />
+                                            </a>
+                                            <p>A YEAR SINCE...</p>
+                                </article>
+                        <article>
+                            <a href="" class="image">
+                                <img src="https://github.com/Grace-Amondi/Grace-Amondi.github.io/blob/master/images/Screenshot%20(198).png?raw=trueg" alt=""
+                                />
+                            </a>
+                            <p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore aliquam.</p>
+                        </article>
+                    </div>
+                    <ul class="actions">
+                        <li>
+                            <a href="#" class="button">More</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>Get in touch</h2>
+                    </header>
+                    <p>You can get me to make you anything or just say hello to me below.</p>
+                    <ul class="contact">
+                        <li class="fa-envelope-o">
+                            <a href="#">gmiswa990@gmail.com</a>
+                        </li>
+                        <li class="fa-phone">+254-705-624-637</li>
+                        <li class="fa-home">P.O BOX 16583
+                            <br /> Nairobi,Kenya -00560</li>
+                    </ul>
+                </section>
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Untitled. All rights reserved. Demo Images:
+                        <a href="https://unsplash.com">Unsplash</a>. Design:
+                        <a href="https://html5up.net">HTML5 UP</a>.</p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
