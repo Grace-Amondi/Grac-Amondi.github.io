@@ -203,7 +203,7 @@ router.get('/', ctrlMain.index);
 module.exports = router;
                     </code></pre></p>
 
-                    <p>Let's go the extra mile and add some Bootsrap to our app. We notice at this point that our views are in .jade format rather than the normal HTML we are all used to. No need to worry.</p>
+                    <p>Let's go the extra mile and add some Superhero Bootsrap Theme to our app. We notice at this point that our views are in .jade format rather than the normal HTML we are all used to. No need to worry.</p>
                     <p>In our layout.jade file add the following link at the top
 
                     <pre class="language-markup"><code>
@@ -244,6 +244,7 @@ Google Cloud Platform, Nodejitsu, OpenShift, and Heroku.We are going to use Hero
     }
 }</code> </pre>
                     <p>Ofcourse you will have to put your own versions in place of mine.</p><p>Next create a Procfile at the root of your project. It's sole purpose is to declare the process and commands used to run the application. Add the following line to your Procfile<pre class="language-js"><code>web: npm start</code></pre></p>
+                    <p>Also create a file at the root of your project and name it <em>.gitignore</em> .Add the line <pre class="language-js"><code>node_modules/</code></pre></p>
                     <p>We are going to push the site to heroku using git. This means that we need to initialize our project as a git repository. Just execute:<pre class="language-js"><code>git init</code></pre></p>
                     <p>Next add everything in the folder to the repository by running this:<pre class="language-js"><code>git add .</code></pre></p>
                     <p>Finally commit changes to the repository<pre class="language-js"><code>git commit -m "First commit"</code></pre></p>
@@ -259,7 +260,7 @@ to add a single web dyno. This is easily done with a simple terminal command:<pr
                     <h2><em>View application live</em></h2>
                     <pre class="language-js"><code>heroku open</code></pre>
 
-                    <p>Source Code can be found on <a href="https://github.com/Grace-Amondi/express">GITHUB</a></p>
+                    <p>Source Code can be found on <a href="https://github.com/Grace-Amondi/express" target="_blank">GITHUB</a> and <a href="https://helloexpress-dwayrkgcak.now.sh/" target="_blank">LIVE DEMO</a></p>
                 </section>
 
             </div>
